@@ -104,6 +104,7 @@ def final_bars_as_of(
         raise ValueError("instrument_id is required")
 
     by_interval: dict[tuple[object, object], list[BarObservation]] = {}
+    source_identity_by_interval: dict[tuple[object, object], set[tuple[str, str]]] = {}
     for observation in observations:
         if observation.instrument_id != instrument_id or observation.state is not BarState.FINAL:
             continue
@@ -111,9 +112,17 @@ def final_bars_as_of(
             continue
         key = (observation.interval_start, observation.interval_end)
         by_interval.setdefault(key, []).append(observation)
+        source_identity_by_interval.setdefault(key, set()).add(
+            (observation.provider, observation.source_symbol)
+        )
 
     selected: list[BarObservation] = []
     for interval, revisions in by_interval.items():
+        if len(source_identity_by_interval[interval]) != 1:
+            raise ValueError(
+                f"conflicting provider instruments for interval {interval!r}; "
+                "assign distinct instrument_id values"
+            )
         latest_key = max((item.available_at, item.revision) for item in revisions)
         latest = [
             item for item in revisions

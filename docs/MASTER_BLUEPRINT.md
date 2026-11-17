@@ -22,9 +22,15 @@ Help investors and researchers improve decision quality through traceable market
 
 These are direction-setting boundaries, not committed technology selections. Stack choices follow a documented decision after gate 0 and requirements validation.
 
+## Current validated foundation (2026-11-17)
+
+The repository now has a provider-neutral Python domain package with instrument identity/specification records, UTC timestamp checks, OHLCV observations and source revision selection; a standard-library unit-test suite and read-only pinned-action CI workflow; and an explicit default-deny entitlement primitive. These are foundational controls, not a connected market-data system. No vendor is selected, no real feed or portfolio data is connected, and no instrument specification is populated from the research drafts until mappings are independently confirmed. The exact current file inventory and historic-vs-current audit distinction are maintained in `docs/reports/REPOSITORY_INVENTORY.md`.
+
+The modular monolith remains the architecture. `agent/skills/` contains role instructions; those files do not create separate processes, model services, or deployment units. Instrument identity is provider/venue scoped; data records require an explicit rights decision before use; and a source-provided timestamp alone does not establish historical availability.
+
 ## Initial scope order
 1. Repository controls, gate ledger, provenance, threat model.
-2. Instrument and observation contracts; validate XAUUSD and NAS100 identity/specifications.
+2. Instrument and observation contracts; validate XAUUSD and NAS100 identity/specifications (Gate 1 still in progress; provider-specific and contractual evidence unresolved).
 3. Point-in-time market-data ingestion and deterministic calculations.
 4. Reproducible research runs and risk limits.
 5. Objective, versioned strategy hypotheses and validation.

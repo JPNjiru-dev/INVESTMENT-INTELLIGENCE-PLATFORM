@@ -156,6 +156,34 @@ class BarObservationTests(unittest.TestCase):
                 as_of=END,
             )
 
+    def test_rejects_multiple_provider_symbols_mapped_to_one_instrument_id(self) -> None:
+        first = bar()
+        other_source = bar(provider="provider-b", source_symbol="XAU/USD")
+        with self.assertRaisesRegex(ValueError, "assign distinct instrument_id"):
+            final_bars_as_of(
+                [first, other_source],
+                instrument_id=first.instrument_id,
+                as_of=END,
+            )
+
+    def test_allows_same_display_symbol_as_distinct_instrument_ids(self) -> None:
+        first = bar(instrument_id="provider-a:spot:xauusd", source_symbol="XAUUSD")
+        second = bar(instrument_id="provider-b:cfd:xauusd", provider="provider-b", source_symbol="XAUUSD")
+        self.assertEqual(final_bars_as_of([first, second], instrument_id=first.instrument_id, as_of=END), [first])
+        self.assertEqual(final_bars_as_of([first, second], instrument_id=second.instrument_id, as_of=END), [second])
+
+    def test_historical_replay_boundary_is_inclusive_for_revision_availability(self) -> None:
+        original = bar()
+        correction_time = END + timedelta(minutes=5)
+        correction = bar(
+            available_at=correction_time,
+            recorded_at=correction_time + timedelta(seconds=1),
+            close=Decimal("104"),
+            revision=2,
+        )
+        self.assertEqual(final_bars_as_of([original, correction], instrument_id=original.instrument_id, as_of=correction_time - timedelta(microseconds=1)), [original])
+        self.assertEqual(final_bars_as_of([original, correction], instrument_id=original.instrument_id, as_of=correction_time), [correction])
+
     def test_requires_utc_as_of_time_and_instrument_id(self) -> None:
         with self.assertRaisesRegex(ValueError, "timezone-aware"):
             final_bars_as_of([], instrument_id="x", as_of=datetime(2026, 11, 17, 13))

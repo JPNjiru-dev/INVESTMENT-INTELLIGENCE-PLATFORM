@@ -22,7 +22,7 @@ This file controls project progression. A gate passes only when every required c
 
 | ID | Pass criteria | Fail/stop condition | Current |
 |---|---|---|---|
-| 0.1 | Intended repository URL, owner, visibility, access, default branch, refs and current commit recorded | Repository ambiguous or inaccessible | PASS: identified; repository public/admin access |
+| 0.1 | Intended repository URL, owner, visibility, access, default branch, refs and current commit recorded | Repository ambiguous or inaccessible | PASS: identified/admin access; original audit public, current GitHub metadata private; main SHA unchanged |
 | 0.2 | Complete tracked tree, history, README, configs, workflows, dependencies, license, deployment/auth/data stores inspected | Cannot inspect baseline | PASS: documentation-only tree; no application stack, CI, dependencies, deployment, auth, or data store; no license declared |
 | 0.3 | Relevant NiaKili references and licensing/provenance reviewed; no unclear/restrictive content copied | Unclear provenance for proposed reuse | PASS for RAE reference-only review; unrelated repos ruled out by scope; no code/assets copied |
 | 0.4 | Architecture map and initial security/data-rights/financial risk assessment recorded | Material unknown risk omitted | PASS: map and initial risks documented; architecture selections remain explicitly open |
@@ -40,7 +40,13 @@ Pass only when instrument types correctly distinguish spot, CFD, futures, ETF, i
 
 Stop on ambiguous instrument semantics, unlicensed data, look-ahead leakage, fabricated/stale values shown as current, or unresolved entitlement enforcement.
 
-**Increment evidence (2026-11-17):** Provider-neutral instrument and OHLCV bar contracts implemented in src/project_codename; 26 standard-library unit tests pass with python -m unittest discover -s tests -v. A read-only CI workflow runs the same suite with pinned, MIT-licensed actions. No third-party runtime dependencies, market-data provider, or prices are connected; no concrete XAUUSD/NAS100 specification is claimed. Gate 1 remains open pending source-verified availability/entitlement semantics and independently verified instrument specifications.
+**Prior increment evidence (2026-11-17):** Provider-neutral instrument and OHLCV bar contracts implemented in src/project_codename; at recovery point `dc334776a2b939b02a303848b1c084b778526552`, 26 standard-library tests passed and branch CI run 44063572782 succeeded.
+
+**Current increment evidence (2026-11-17):** Added default-deny entitlement primitive in `src/project_codename/data_rights.py`, provider identity collision rejection in finalized bar selection, 8 new regression tests and official research reports. Local Python 3.12 command `python -m unittest discover -s tests -v` ran 34 tests, all passed; `git diff --check` passed. Feature-branch CI for this increment is pending publication. No provider integration, subscription, or prices are connected. Official sources establish some product-specific facts but do not establish a full provider/customer license or trusted historical source-availability times across selected products. No universal concrete XAUUSD mapping is claimed. Gate 1 remains IN PROGRESS.
+
+**Repository settings note (2026-11-17):** The initial audit described the repository as public. Current GitHub repository metadata now reports private; visibility was not changed by this increment and the time/actor of the change is unknown. Current branch listing reports `protected=false` for both `main` and the feature branch; detailed protection API read was denied (403). Configure branch protection. No LICENSE file exists.
+
+**Gate 1 open findings (2026-11-17):** (a) provider and exchange customer rights are product/use/geography dependent; owner/legal review and vendor written confirmation are required for intended storage, customer display, analysis/AI use, derived output and redistribution; (b) public official evidence does not establish point-in-time historical source availability across an approved provider portfolio; (c) direct XAUUSD/NAS100 CFD and spot feed specifications are provider specific and must be selected before integration; (d) calendars, correction history, instrument spec versioning and customer entitlement integration remain unimplemented. The fail-closed entitlement primitive only denies/permits use against explicitly recorded administrative evidence; it is not an entitlement service or contract interpreter.
 
 **CI evidence (2026-11-17):** [GitHub Actions run 44063337647](https://github.com/JPNjiru-dev/INVESTMENT-INTELLIGENCE-PLATFORM/actions/runs/44063337647) completed successfully on commit 24e5c4c44ba091624cdcd7c27a67928f5763eb0f. Checkout, Python setup, and the unit-test job all succeeded.
 
@@ -50,6 +56,8 @@ Stop on ambiguous instrument semantics, unlicensed data, look-ahead leakage, fab
 |---|---|---|---|
 | 0 | Full initialized repository baseline inspected; local checkout on main; baseline commit recorded above | PASS | 36db1f967d41f5d1063fcfbd2772bc93b42f1109 |
 | 1 | Typed instrument and bar model with 26 passing local and CI unit tests; provider/specification validation remains open | IN PROGRESS | 24e5c4c44ba091624cdcd7c27a67928f5763eb0f |
+
+| 2026-11-17 | 1 | Official provider/venue research, independent instrument-profile report, skill contracts and fail-closed entitlement primitive; full suite/CI pending this increment | IN PROGRESS | dc334776a2b939b02a303848b1c084b778526552 |
 
 ### Checkpoint 2 — Deterministic calculations, research, and risk foundations
 
@@ -121,5 +129,6 @@ Pass only as a feasibility conclusion supported by venue rules, timestamp/clock-
 |---|---|---|---|---|
 | 2026-11-17 | 0 | Target was initialized and fully audited; checkout on main verified | PASS | 36db1f967d41f5d1063fcfbd2772bc93b42f1109 |
 | 2026-11-17 | 1 | Instrument and time-aware bar contracts; 26 local and CI tests pass | IN PROGRESS | 24e5c4c44ba091624cdcd7c27a67928f5763eb0f |
+| 2026-11-17 | 1 | Entitlement boundary, provider-identity rejection, research/skill docs; 34 local tests pass; feature-branch CI pending | IN PROGRESS | dc334776a2b939b02a303848b1c084b778526552 |
 
 
