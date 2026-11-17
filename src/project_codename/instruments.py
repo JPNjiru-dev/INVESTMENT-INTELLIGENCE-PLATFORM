@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from decimal import Decimal
 from enum import StrEnum
 
+from .temporal import ensure_utc_datetime
 
 class InstrumentKind(StrEnum):
     SPOT = "spot"
@@ -32,15 +33,6 @@ class AssetClass(StrEnum):
     BOND = "bond"
     RATE = "rate"
     OTHER = "other"
-
-
-def _aware_utc(value: datetime, field_name: str) -> None:
-    if not isinstance(value, datetime):
-        raise TypeError(f"{field_name} must be a datetime")
-    if value.tzinfo is None or value.utcoffset() is None:
-        raise ValueError(f"{field_name} must be timezone-aware")
-    if value.utcoffset().total_seconds() != 0:
-        raise ValueError(f"{field_name} must use UTC")
 
 
 def _positive_decimal(value: Decimal | None, field_name: str) -> None:
@@ -67,9 +59,9 @@ class EvidenceReference:
             raise ValueError("evidence uri is required")
         if not self.publisher.strip():
             raise ValueError("evidence publisher is required")
-        _aware_utc(self.retrieved_at, "retrieved_at")
+        ensure_utc_datetime(self.retrieved_at, "retrieved_at")
         if self.published_at is not None:
-            _aware_utc(self.published_at, "published_at")
+            ensure_utc_datetime(self.published_at, "published_at")
 
 
 @dataclass(frozen=True, slots=True)
@@ -146,9 +138,9 @@ class InstrumentRecord:
         }:
             raise ValueError("spot instruments must be forex, commodity, or crypto assets")
 
-        _aware_utc(self.valid_from, "valid_from")
+        ensure_utc_datetime(self.valid_from, "valid_from")
         if self.valid_to is not None:
-            _aware_utc(self.valid_to, "valid_to")
+            ensure_utc_datetime(self.valid_to, "valid_to")
             if self.valid_to <= self.valid_from:
                 raise ValueError("valid_to must be later than valid_from")
 

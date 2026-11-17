@@ -40,14 +40,14 @@ Pass only when instrument types correctly distinguish spot, CFD, futures, ETF, i
 
 Stop on ambiguous instrument semantics, unlicensed data, look-ahead leakage, fabricated/stale values shown as current, or unresolved entitlement enforcement.
 
-**Increment evidence (2026-11-17):** Provider-neutral instrument identity/specification contract implemented in src/project_codename/instruments.py; 13 standard-library unit tests pass with python -m unittest discover -s tests -v. git diff --check passes. No provider data, prices, XAUUSD/NAS100 claims, or third-party dependencies added. Gate 1 remains open pending point-in-time observation and rights-aware source contracts plus independent specifications.
+**Increment evidence (2026-11-17):** Provider-neutral instrument and OHLCV bar contracts implemented in src/project_codename; 26 standard-library unit tests pass with python -m unittest discover -s tests -v. git diff --check passes. No provider data, prices, XAUUSD/NAS100 claims, or third-party dependencies added. Gate 1 remains open pending source-verified availability/entitlement semantics and independently verified instrument specifications.
 
 ### Progress entry — 2026-11-17
 
 | Checkpoint | Evidence | Status | Recovery point |
 |---|---|---|---|
 | 0 | Full initialized repository baseline inspected; local checkout on main; baseline commit recorded above | PASS | 36db1f967d41f5d1063fcfbd2772bc93b42f1109 |
-| 1 | Typed instrument model and 13 passing unit tests; provider/specification validation remains open | IN PROGRESS | Implementation increment 881a74ceb22623caffc4e5209de8ff065db41f62 |
+| 1 | Typed instrument and bar model with 26 passing unit tests; provider/specification validation remains open | IN PROGRESS | 881a74ceb22623caffc4e5209de8ff065db41f62 |
 
 ### Checkpoint 2 — Deterministic calculations, research, and risk foundations
 
@@ -118,5 +118,6 @@ Pass only as a feasibility conclusion supported by venue rules, timestamp/clock-
 | Date | Checkpoint | Change/evidence | Status | Recovery point |
 |---|---|---|---|---|
 | 2026-11-17 | 0 | Target was initialized and fully audited; checkout on main verified | PASS | 36db1f967d41f5d1063fcfbd2772bc93b42f1109 |
+| 2026-11-17 | 1 | Instrument and time-aware bar contracts; 26 unit tests pass | IN PROGRESS | 881a74ceb22623caffc4e5209de8ff065db41f62 |
 
 

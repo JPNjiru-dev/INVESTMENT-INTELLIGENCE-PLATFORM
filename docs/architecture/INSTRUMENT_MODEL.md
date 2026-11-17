@@ -18,4 +18,4 @@ Price tick, quantity step, contract multiplier, settlement currency, and quantit
 
 ## Boundaries and next work
 
-This module does not ingest data, validate exchange entitlements, resolve corporate actions, convert currencies, calculate risk, or assert concrete XAUUSD/NAS100 specifications. Next, define point-in-time market observations and source entitlement contracts with an approved data source before any integration.
+This module does not ingest data, validate exchange entitlements, resolve corporate actions, convert currencies, calculate risk, or assert concrete XAUUSD/NAS100 specifications. See the initial bar contract in MARKET_DATA_CONTRACT.md; source rights, point-in-time entitlement evidence, and source-specific validation are still required before integration.

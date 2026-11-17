@@ -4,7 +4,7 @@ NiaKili Systems Global Investment Intelligence Platform. The product brand is co
 
 ## Current status
 
-Checkpoint 0 passed on 2026-11-17. The initial instrument-domain increment is in progress. No market data provider, trading integration, live order capability, or investment-performance claim is enabled. This project is research software and is not yet a production investment service.
+Checkpoint 0 passed on 2026-11-17. Instrument and point-in-time bar contracts are being established. No market data provider, trading integration, live order capability, or investment-performance claim is enabled. This project is research software and is not yet a production investment service.
 
 ## Governing documents
 
