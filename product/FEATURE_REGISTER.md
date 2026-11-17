@@ -1,0 +1,14 @@
+# Product Feature Register
+
+All meaningful features record expected value, evidence, cost, risks, dependencies, and acceptance criteria. Status: proposed until evidence passes the relevant gate.
+
+| ID | Feature | Expected value | Evidence | Cost | Risks | Dependencies | Acceptance criteria | Status |
+|---|---|---|---|---|---|---|---|---|
+| F-001 | Broker-independent instrument and market-data foundation | Prevents asset-type and point-in-time errors; enables global research | Product brief; no provider selected | Engineering plus licensed data cost TBD | Rights, stale/corrected data, identifier ambiguity | Gates 0–1 | Typed instrument specifications; source provenance/rights; point-in-time contract; XAUUSD/NAS100 fixtures independently verified | Proposed |
+| F-002 | Deterministic research and risk core | Reproducible calculations and bounded risk | Financial safety requirements | Engineering and independent review | Precision, units, leakage, hidden costs | Gates 1–2 | Exact calculation tests, independent fixtures, fail-closed limits, reproducible runs | Proposed |
+| F-003 | Strategy validation framework | Reduce overfit and unsupported claims | Research requirements | Compute and analyst time TBD | Bias, regime change, cost misspecification | Gates 1–3 | OOS, walk-forward, costs, robustness, paper phase evidenced | Proposed |
+| F-004 | Long-term equity and ETF research | Support investment discovery beyond short-term trading | Product brief | Licensed fundamentals/filings and engineering TBD | Restatements, delistings, valuation error | Gates 1–2, 4 | Cited point-in-time fundamentals, scenario/downside and failure analysis | Proposed |
+| F-005 | Portfolio intelligence | Expose concentration, correlation, and stress | Product brief | Data and engineering TBD | Incorrect holdings, currency/corporate-action mismatch | Gates 1–2, 4 | Reproducible exposures, benchmark, stress and drawdown outputs | Proposed |
+| F-006 | State-driven Agent Operations Centre | Make real agent work inspectable and auditable | Product requirement | UI/backend/event infrastructure TBD | Fake activity, authorization leaks, stale state | Gates 1–2, 5 | Backend event-driven state, history, handoffs, errors/retries, accessibility, reconnect evidence | Proposed |
+| F-007 | Human-bound proposal approvals | Prevent unauthorized orders and stale approvals | Product safety contract | Engineering/security review | Proposal tampering, replay, expired consent | Gates 2, 6 | Immutable proposal binding and tested fail-closed authorization; no autonomous submission | Proposed |
+| F-008 | HFT feasibility programme | Establish whether suitable research is possible | Product requirement | Separate data, venue, infrastructure and latency study | Mislabeling ordinary intraday strategies as HFT | Gate 8 | Independent evidence of rights, venue access, latency, data fidelity and cost model | Deferred |
