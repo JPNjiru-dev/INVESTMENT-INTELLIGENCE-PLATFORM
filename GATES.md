@@ -47,7 +47,7 @@ Stop on ambiguous instrument semantics, unlicensed data, look-ahead leakage, fab
 | Checkpoint | Evidence | Status | Recovery point |
 |---|---|---|---|
 | 0 | Full initialized repository baseline inspected; local checkout on main; baseline commit recorded above | PASS | 36db1f967d41f5d1063fcfbd2772bc93b42f1109 |
-| 1 | Typed instrument and bar model with 26 passing unit tests; provider/specification validation remains open | IN PROGRESS | 881a74ceb22623caffc4e5209de8ff065db41f62 |
+| 1 | Typed instrument and bar model with 26 passing unit tests; provider/specification validation remains open | IN PROGRESS | 70821f87823f5acb949c5a73c57d2fa28d432283 |
 
 ### Checkpoint 2 — Deterministic calculations, research, and risk foundations
 
@@ -118,6 +118,6 @@ Pass only as a feasibility conclusion supported by venue rules, timestamp/clock-
 | Date | Checkpoint | Change/evidence | Status | Recovery point |
 |---|---|---|---|---|
 | 2026-11-17 | 0 | Target was initialized and fully audited; checkout on main verified | PASS | 36db1f967d41f5d1063fcfbd2772bc93b42f1109 |
-| 2026-11-17 | 1 | Instrument and time-aware bar contracts; 26 unit tests pass | IN PROGRESS | 881a74ceb22623caffc4e5209de8ff065db41f62 |
+| 2026-11-17 | 1 | Instrument and time-aware bar contracts; 26 unit tests pass | IN PROGRESS | 70821f87823f5acb949c5a73c57d2fa28d432283 |
 
 
