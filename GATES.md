@@ -40,7 +40,7 @@ Pass only when instrument types correctly distinguish spot, CFD, futures, ETF, i
 
 Stop on ambiguous instrument semantics, unlicensed data, look-ahead leakage, fabricated/stale values shown as current, or unresolved entitlement enforcement.
 
-**Increment evidence (2026-11-17):** Provider-neutral instrument and OHLCV bar contracts implemented in src/project_codename; 26 standard-library unit tests pass with python -m unittest discover -s tests -v. git diff --check passes. No provider data, prices, XAUUSD/NAS100 claims, or third-party dependencies added. Gate 1 remains open pending source-verified availability/entitlement semantics and independently verified instrument specifications.
+**Increment evidence (2026-11-17):** Provider-neutral instrument and OHLCV bar contracts implemented in src/project_codename; 26 standard-library unit tests pass with python -m unittest discover -s tests -v. A read-only CI workflow runs the same suite with pinned, MIT-licensed actions. No third-party runtime dependencies, market-data provider, or prices are connected; no concrete XAUUSD/NAS100 specification is claimed. Gate 1 remains open pending source-verified availability/entitlement semantics and independently verified instrument specifications.
 
 ### Progress entry — 2026-11-17
 

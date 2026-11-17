@@ -17,3 +17,7 @@ Checkpoint 0 passed on 2026-11-17. Instrument and point-in-time bar contracts ar
 ## Safety boundaries
 
 All financial calculations and risk permissions must be deterministic and reproducible. AI-generated research must cite evidence and distinguish facts, calculations, interpretations, and hypotheses. Human approval is mandatory for every trade proposal. Autonomous order submission is disabled.
+
+## Validation
+
+Run the standard-library test suite with `python -m unittest discover -s tests -v`. GitHub Actions runs the same command on pushes and pull requests with read-only repository permissions.

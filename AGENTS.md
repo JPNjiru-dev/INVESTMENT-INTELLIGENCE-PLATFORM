@@ -23,6 +23,7 @@
 ## Engineering
 - Prefer small, reviewable increments and a modular monolith until scale evidence supports services.
 - Add dependencies only after documenting purpose, version, license, data handling, and cost.
+- Pin GitHub Actions by full commit SHA, record their licenses, and keep workflow token permissions minimal.
 - No credentials or customer secrets in source, logs, fixtures, or commits.
 - Update the feature, license, data-rights, and changelog registers when applicable.
 - Report exact validation commands/results, gate status, security/licensing/financial findings, open risks, and commit SHA.
