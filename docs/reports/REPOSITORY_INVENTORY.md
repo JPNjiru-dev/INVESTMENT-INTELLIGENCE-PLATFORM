@@ -87,7 +87,15 @@ This is an initial risk register, not a penetration test or legal determination.
 
 Evidence was collected from GitHub repository metadata, branches, commits, recursive tree, contents, sibling repository metadata/tree/README/package manifest/workflow listing, and the local workspace. The target's API responses explicitly report an empty Git repository. No local clone, branch, or commit exists. GitHub authentication/permissions and any repository-only UI settings were not independently validated beyond the connected account's returned permission fields.
 
-## Next action
+## Next action at original audit time
 
-Initialize the target repository with a first reviewed commit (or provide a local clone/working checkout). Then re-run the branch, commit, complete tree, configuration, and license audit against that actual baseline before implementing product features. Gate 0 criteria are recorded in `GATES.md`.
+At the time of the initial audit, initialize the target repository with a reviewed commit or provide a local clone. That prerequisite has since been completed and re-audited below.
+
+## Post-bootstrap audit update — 2026-11-17
+
+The user confirmed this repository as the intended target. A documentation-only bootstrap was created on `main`, and the repository was cloned locally for inspection. The branch exists and is **not protected**. The current baseline before the first engineering increment is `36db1f967d41f5d1063fcfbd2772bc93b42f1109`.
+
+The complete recursive tree and commit list were reviewed after bootstrap. The tracked project content consists of product controls and documentation only; it has no runtime manifest, dependencies, CI workflow, deployment configuration, authentication implementation, or database. No repository license is declared. No code or assets from the sibling product were copied. Gate 0 now passes; the evidence and status are in `GATES.md`.
+
+The first implementation increment adds a standard-library Python instrument domain model and unit tests. The active checkout is on `main` with uncommitted changes while this increment is validated. The audit remains limited to repository metadata/tree and inspected files; branch-protection settings were observed as disabled for `main`, while organization-wide policies and secrets settings were not inspected.
 

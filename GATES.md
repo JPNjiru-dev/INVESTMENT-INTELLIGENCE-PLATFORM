@@ -10,35 +10,44 @@ This file controls project progression. A gate passes only when every required c
 - Stop the affected work on unresolved data rights, unclear license provenance, point-in-time leakage, financial arithmetic mismatch, unauthorized data exposure, missing human approval, or a security issue that can affect customer data or order authorization.
 - Autonomous order submission remains disabled. Every trade requires human approval; material proposal changes require a new approval.
 - Paid services/material recurring costs, production deployment, changed permissions/secrets, real customer financial data, regulated management/custody features, license changes, restricted IP, or public performance claims require explicit human approval before the action.
-- Keep a recovery point before every material change; record the Git commit when available. Until Git is initialized, retain reviewable workspace artifacts and do not report a commit hash.
+- Keep a recovery point before every material change; record the Git commit when available. On uncommitted work, report the current baseline commit and working-tree state.
 
 ## Checkpoints
 
 ### Checkpoint 0 — Repository, licensing, and architecture audit
 
-**Status: BLOCKED**  
-**Dependencies:** Target repository identified (passed); first commit/default branch and inspectable checkout (not met).  
-**Evidence:** [`REPOSITORY_INVENTORY.md`](REPOSITORY_INVENTORY.md); GitHub target metadata, empty branch list, commit/tree 409 responses, contents 404 response; local workspace `git rev-parse` reports not a repository.
+**Status: PASS**
+**Dependencies:** None.
+**Evidence:** [Repository inventory](docs/reports/REPOSITORY_INVENTORY.md); target metadata, complete recursive tree, branch and commit history; local checkout at `main`. The initial audit observed the repository empty before documentation bootstrap. The current repository has a committed documentation baseline and a clean local checkout.
 
 | ID | Pass criteria | Fail/stop condition | Current |
 |---|---|---|---|
 | 0.1 | Intended repository URL, owner, visibility, access, default branch, refs and current commit recorded | Repository ambiguous or inaccessible | PASS: identified; repository public/admin access |
-| 0.2 | Complete tracked tree, history, README, configs, workflows, dependencies, license, deployment/auth/data stores inspected | Cannot inspect baseline | BLOCKED: target is empty; no commit/ref/tree |
-| 0.3 | Relevant NiaKili references and licensing/provenance reviewed; no unclear/restrictive content copied | Unclear provenance for proposed reuse | PASS for reference-only review of RAE; broader unrelated repos not fully audited |
-| 0.4 | Architecture map and initial security/data-rights/financial risk assessment recorded | Material unknown risk omitted | PASS: initial map and risks documented; repository architecture is unselected |
-| 0.5 | Working checkout on verified default branch and safe recovery point recorded | No checkout or commit available | BLOCKED |
+| 0.2 | Complete tracked tree, history, README, configs, workflows, dependencies, license, deployment/auth/data stores inspected | Cannot inspect baseline | PASS: documentation-only tree; no application stack, CI, dependencies, deployment, auth, or data store; no license declared |
+| 0.3 | Relevant NiaKili references and licensing/provenance reviewed; no unclear/restrictive content copied | Unclear provenance for proposed reuse | PASS for RAE reference-only review; unrelated repos ruled out by scope; no code/assets copied |
+| 0.4 | Architecture map and initial security/data-rights/financial risk assessment recorded | Material unknown risk omitted | PASS: map and initial risks documented; architecture selections remain explicitly open |
+| 0.5 | Working checkout on verified default branch and safe recovery point recorded | No checkout or commit available | PASS: clean local checkout on `main`; pre-increment baseline `36db1f967d41f5d1063fcfbd2772bc93b42f1109` |
 
 **Gate 0 passes when:** 0.1–0.5 all pass on an actual initialized repository.  
-**Next action:** Initialize target repository and provide a checkout/first commit; repeat 0.2 and 0.5. Do not start product implementation before this gate passes.
+**Next action:** Continue with the provider-neutral instrument contract; no data provider is connected or approved.
 
 ### Checkpoint 1 — Product domain, global instrument model, and market data
 
-**Status: NOT STARTED**  
+**Status: IN PROGRESS**
 **Dependencies:** Gate 0 PASS; approved data-source rights and product scope.
 
 Pass only when instrument types correctly distinguish spot, CFD, futures, ETF, index, and equity; identifiers include venue/provider and currency/contract conventions as applicable; XAUUSD and NAS100 mappings have independently verified specifications; event/timezone/calendar semantics are explicit; point-in-time historical and real-time contracts prevent future data access; data provenance, quality, correction, stale-state, and entitlement handling are documented and tested; selected sources' storage/display/derived/redistribution rights are approved and entered in `DATA_RIGHTS_REGISTER.md`.
 
 Stop on ambiguous instrument semantics, unlicensed data, look-ahead leakage, fabricated/stale values shown as current, or unresolved entitlement enforcement.
+
+**Increment evidence (2026-11-17):** Provider-neutral instrument identity/specification contract implemented in src/project_codename/instruments.py; 13 standard-library unit tests pass with python -m unittest discover -s tests -v. git diff --check passes. No provider data, prices, XAUUSD/NAS100 claims, or third-party dependencies added. Gate 1 remains open pending point-in-time observation and rights-aware source contracts plus independent specifications.
+
+### Progress entry — 2026-11-17
+
+| Checkpoint | Evidence | Status | Recovery point |
+|---|---|---|---|
+| 0 | Full initialized repository baseline inspected; local checkout on main; baseline commit recorded above | PASS | 36db1f967d41f5d1063fcfbd2772bc93b42f1109 |
+| 1 | Typed instrument model and 13 passing unit tests; provider/specification validation remains open | IN PROGRESS | Baseline above; increment not yet committed |
 
 ### Checkpoint 2 — Deterministic calculations, research, and risk foundations
 
