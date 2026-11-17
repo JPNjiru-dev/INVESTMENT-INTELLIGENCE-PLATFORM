@@ -42,12 +42,14 @@ Stop on ambiguous instrument semantics, unlicensed data, look-ahead leakage, fab
 
 **Increment evidence (2026-11-17):** Provider-neutral instrument and OHLCV bar contracts implemented in src/project_codename; 26 standard-library unit tests pass with python -m unittest discover -s tests -v. A read-only CI workflow runs the same suite with pinned, MIT-licensed actions. No third-party runtime dependencies, market-data provider, or prices are connected; no concrete XAUUSD/NAS100 specification is claimed. Gate 1 remains open pending source-verified availability/entitlement semantics and independently verified instrument specifications.
 
+**CI evidence (2026-11-17):** [GitHub Actions run 44063337647](https://github.com/JPNjiru-dev/INVESTMENT-INTELLIGENCE-PLATFORM/actions/runs/44063337647) completed successfully on commit 24e5c4c44ba091624cdcd7c27a67928f5763eb0f. Checkout, Python setup, and the unit-test job all succeeded.
+
 ### Progress entry — 2026-11-17
 
 | Checkpoint | Evidence | Status | Recovery point |
 |---|---|---|---|
 | 0 | Full initialized repository baseline inspected; local checkout on main; baseline commit recorded above | PASS | 36db1f967d41f5d1063fcfbd2772bc93b42f1109 |
-| 1 | Typed instrument and bar model with 26 passing unit tests; provider/specification validation remains open | IN PROGRESS | 70821f87823f5acb949c5a73c57d2fa28d432283 |
+| 1 | Typed instrument and bar model with 26 passing local and CI unit tests; provider/specification validation remains open | IN PROGRESS | 24e5c4c44ba091624cdcd7c27a67928f5763eb0f |
 
 ### Checkpoint 2 — Deterministic calculations, research, and risk foundations
 
@@ -118,6 +120,6 @@ Pass only as a feasibility conclusion supported by venue rules, timestamp/clock-
 | Date | Checkpoint | Change/evidence | Status | Recovery point |
 |---|---|---|---|---|
 | 2026-11-17 | 0 | Target was initialized and fully audited; checkout on main verified | PASS | 36db1f967d41f5d1063fcfbd2772bc93b42f1109 |
-| 2026-11-17 | 1 | Instrument and time-aware bar contracts; 26 unit tests pass | IN PROGRESS | 70821f87823f5acb949c5a73c57d2fa28d432283 |
+| 2026-11-17 | 1 | Instrument and time-aware bar contracts; 26 local and CI tests pass | IN PROGRESS | 24e5c4c44ba091624cdcd7c27a67928f5763eb0f |
 
 
